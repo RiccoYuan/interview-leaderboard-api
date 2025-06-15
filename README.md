@@ -193,8 +193,8 @@
 cd dotnet
 dotnet restore
 dotnet build
-dotnet test
 dotnet run --project LeaderBoard.API
+dotnet run --project LeaderBoard.API.Tests
 ```
 
 ### Node.js版本
