@@ -1,0 +1,51 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60
+      arrivalRate: 1000
+      rampTo: 10000
+      name: "Warm up"
+    - duration: 300
+      arrivalRate: 10000
+      name: "Sustained load"
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Update Score"
+    weight: 3
+    flow:
+      - function: "randomCustomerId"
+      - function: "randomScore"
+      - post:
+          url: "/api/customer/{{ customerId }}/score/{{ score }}"
+          expect:
+            - statusCode: 200
+
+  - name: "Get Leaderboard"
+    weight: 7
+    flow:
+      - get:
+          url: "/api/leaderboard?start=1&end=100"
+          expect:
+            - statusCode: 200
+
+  - name: "Get Neighbors"
+    weight: 2
+    flow:
+      - function: "randomCustomerId"
+      - get:
+          url: "/api/leaderboard/{{ customerId }}?high=5&low=5"
+          expect:
+            - statusCode: [200, 404]
+
+functions:
+  randomCustomerId: |
+    function randomCustomerId() {
+      context.vars.customerId = Math.floor(Math.random() * 1000000) + 1;
+    }
+  randomScore: |
+    function randomScore() {
+      context.vars.score = Math.floor(Math.random() * 2000) - 1000;
+    } 
