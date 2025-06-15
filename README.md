@@ -2,7 +2,7 @@
 
 ## 项目说明
 
-本项目是作为面试题目"实时排行榜系统"的解决方案。面试题目详细要求请参考 `docs/interview Codes for donnet-updated.pdf`。
+本项目是作为面试题目"实时排行榜系统"的解决方案。面试题目详细要求请参考[interview Codes for donnet-updated.pdf](./docs/interview%20Codes%20for%20donnet-updated.pdf)。
 
 ### 面试题目要求概述
 
@@ -54,6 +54,9 @@
    - 异常处理
 
 ## 项目实现
+
+![Swagger API 文档界面](docs/images/api-swagger.png)
+
 
 本项目提供了两种技术栈的实现方案：
 
@@ -140,6 +143,8 @@
 
 ## 性能测试分析
 
+![NBomber 性能测试报告](docs/images/load-test.png)
+
 ### 测试方案
 为了确保测试结果的可比性，使用统一的测试工具和测试环境：
 - 测试工具：NBomber 性能测试工具
@@ -205,7 +210,3 @@ yarn install
 yarn build
 yarn start
 ```
-
-## API文档
-
-详细的API文档请参考 `docs` 目录下的相关文档。
